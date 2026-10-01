@@ -1,21 +1,16 @@
-import { defaultLang, showDefaultLang, ui } from "./ui";
-import type { Locale } from "./ui";
+import { defaultLang, languages, showDefaultLang, ui } from "./ui";
+import type { Locale, TranslationKey } from "./ui";
 
-import es from "./translations/es.json";
-import en from "./translations/en.json";
-
-const dictionaries: Record<Locale, Record<string, string>> = {
-	es: es as Record<string, string>,
-	en: en as Record<string, string>,
-};
+const dictionaries: Record<Locale, Record<string, string>> = ui;
 
 export function getLangFromUrl(url: URL): Locale {
 	const [, lang] = url.pathname.split("/");
-	return lang in ui ? (lang as Locale) : defaultLang;
+	return lang in languages ? (lang as Locale) : defaultLang;
 }
 
 export function useTranslations(lang: Locale) {
-	return (key: string): string => dictionaries[lang]?.[key] ?? key;
+	const dictionary = dictionaries[lang] ?? dictionaries[defaultLang];
+	return (key: TranslationKey): string => dictionary[key] ?? key;
 }
 
 export function useTranslatedPath(lang: Locale) {
