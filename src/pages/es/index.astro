@@ -1,0 +1,13 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const t = useTranslations("es");
+
+const title = t("meta.home.title");
+const description = t("meta.home.description");
+---
+
+<Layout title={title} description={description}>
+	<h1 class="text-4xl font-bold">{title}</h1>
+</Layout>
