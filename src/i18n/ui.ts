@@ -7,6 +7,8 @@ const es = {
 	"nav.about": "Nosotros",
 	"nav.contact": "Contacto",
 	"nav.promo": "Promociones",
+	"nav.main": "Navegación principal",
+	"nav.toggle": "Abrir menú",
 	"hero.eyebrow": "Cocina mediterránea de temporada",
 	"hero.title": "Sabores que cuentan historias",
 	"hero.subtitle":
@@ -61,6 +63,8 @@ export const ui = {
 		"nav.about": "About us",
 		"nav.contact": "Contact",
 		"nav.promo": "Offers",
+		"nav.main": "Main navigation",
+		"nav.toggle": "Open menu",
 		"hero.eyebrow": "Seasonal Mediterranean cuisine",
 		"hero.title": "Flavours that tell stories",
 		"hero.subtitle":

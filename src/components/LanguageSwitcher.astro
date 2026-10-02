@@ -1,0 +1,54 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const esUrl = getRelativeLocaleUrl("es", "/");
+const enUrl = getRelativeLocaleUrl("en", "/");
+
+const linkBase =
+	"rounded px-1.5 py-1 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2";
+---
+
+<nav
+	aria-label={t("language.label")}
+	class="inline-flex items-center gap-1 text-xs uppercase tracking-wider"
+>
+	<a
+		href={esUrl}
+		hreflang="es"
+		lang="es"
+		aria-current={lang === "es" ? "true" : undefined}
+		aria-label={lang === "es" ? `${t("language.current")}: Español` : "Español"}
+		class:list={[
+			linkBase,
+			lang === "es"
+				? "font-semibold underline underline-offset-4"
+				: "opacity-60 hover:opacity-100 hover:underline hover:underline-offset-4",
+		]}
+	>
+		ES
+	</a>
+	<span aria-hidden="true" class="opacity-30">/</span>
+	<a
+		href={enUrl}
+		hreflang="en"
+		lang="en"
+		aria-current={lang === "en" ? "true" : undefined}
+		aria-label={lang === "en" ? `${t("language.current")}: English` : "English"}
+		class:list={[
+			linkBase,
+			lang === "en"
+				? "font-semibold underline underline-offset-4"
+				: "opacity-60 hover:opacity-100 hover:underline hover:underline-offset-4",
+		]}
+	>
+		EN
+	</a>
+</nav>
