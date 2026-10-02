@@ -1,6 +1,6 @@
 ---
-import { useTranslatedPath, useTranslations } from "../i18n/utils";
-import FeatureSection from "./FeatureSection.astro";
+import { useTranslations } from "../i18n/utils";
+import Placeholder from "./Placeholder.astro";
 
 interface Props {
 	lang: "es" | "en";
@@ -8,26 +8,90 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const tp = useTranslatedPath(lang);
 
-const items = [
-	t("sections.flexible.item1"),
-	t("sections.flexible.item2"),
-	t("sections.flexible.item3"),
+interface Dish {
+	name: string;
+	price: string;
+	image?: string;
+}
+
+const starters: Dish[] = [
+	{
+		name: t("menu.dish1.name"),
+		price: t("menu.dish1.price"),
+		image: "/images/papas-arrugadas.webp",
+	},
+	{ name: t("menu.dish2.name"), price: t("menu.dish2.price") },
+	{ name: t("menu.dish3.name"), price: t("menu.dish3.price") },
+	{ name: t("menu.dish4.name"), price: t("menu.dish4.price") },
+	{ name: t("menu.dish5.name"), price: t("menu.dish5.price") },
+	{ name: t("menu.dish6.name"), price: t("menu.dish6.price") },
+];
+const mains: Dish[] = [
+	{ name: t("menu.dish7.name"), price: t("menu.dish7.price"), image: "/images/conejo-salmorejo.webp" },
+	{ name: t("menu.dish8.name"), price: t("menu.dish8.price") },
+	{ name: t("menu.dish9.name"), price: t("menu.dish9.price"), image: "/images/sancocho-canario.webp" },
+	{ name: t("menu.dish10.name"), price: t("menu.dish10.price") },
+	{ name: t("menu.dish11.name"), price: t("menu.dish11.price") },
+	{ name: t("menu.dish12.name"), price: t("menu.dish12.price") },
+];
+const groups = [
+	{ title: t("menu.starters.title"), dishes: starters },
+	{ title: t("menu.mains.title"), dishes: mains },
 ];
 ---
 
-<FeatureSection
+<section
 	id="carta"
-	titleId="flexible-menu-title"
-	title={t("sections.flexible.title")}
-	description={t("sections.flexible.description")}
-	features={items}
-	buttonText={t("buttons.viewMenu")}
-	href={tp("/")}
-	imagePosition="right"
-	tone="white"
-	placeholderLabel={t("placeholder.label")}
-	placeholderName={t("placeholder.menu")}
-	placeholderRatio="portrait"
-/>
+	aria-labelledby="menu-title"
+	class="border-y border-stone-900/10 bg-white text-stone-900"
+>
+	<div class="shell section-pad">
+		<h2 id="menu-title" class="h-section mx-auto max-w-2xl text-center">
+			{t("sections.menu.title")}
+		</h2>
+		<p class="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-stone-600 sm:text-lg">
+			{t("sections.menu.description")}
+		</p>
+		<div class="mt-10 grid items-start gap-10 md:grid-cols-5 lg:gap-14">
+			<div class="md:order-2 md:col-span-2">
+				<div class="frame md:sticky md:top-24">
+					<Placeholder label={t("placeholder.label")} name={t("placeholder.menu")} ratio="portrait" />
+				</div>
+			</div>
+			<div class="flex flex-col gap-10 md:order-1 md:col-span-3">
+				{groups.map((group) => (
+					<div>
+						<h3 class="text-xs font-bold uppercase tracking-[0.22em] text-teal-900">
+							{group.title}
+						</h3>
+						<ul class="mt-2">
+							{group.dishes.map((dish) => (
+								<li class="flex items-baseline gap-3 border-b border-stone-900/10 py-3 last:border-0">
+									<span class="text-sm font-semibold text-stone-900 sm:text-base">
+										{dish.name}
+									</span>
+									<span
+										aria-hidden="true"
+										class="mb-1 flex-1 border-b-2 border-dotted border-stone-900/25"
+									/>
+									<span class="text-sm font-black tracking-tight text-teal-900 sm:text-base">
+										{dish.price}
+									</span>
+									{dish.image && (
+										<img
+											src={dish.image}
+											alt={dish.name}
+											loading="lazy"
+											class="size-12 shrink-0 self-center rounded-xl object-cover ring-1 ring-stone-900/10"
+										/>
+									)}
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
