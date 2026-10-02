@@ -1,6 +1,5 @@
 ---
 import { useTranslations } from "../i18n/utils";
-import Placeholder from "./Placeholder.astro";
 
 interface Props {
 	lang: "es" | "en";
@@ -56,7 +55,12 @@ const groups = [
 		<div class="mt-10 grid items-start gap-10 md:grid-cols-5 lg:gap-14">
 			<div class="md:order-2 md:col-span-2">
 				<div class="frame md:sticky md:top-24">
-					<Placeholder label={t("placeholder.label")} name={t("placeholder.menu")} ratio="portrait" />
+					<img
+						src="/images/camarera-vino.webp"
+						alt={t("menu.serviceAlt")}
+						loading="lazy"
+						class="aspect-[4/5] w-full object-cover"
+					/>
 				</div>
 			</div>
 			<div class="flex flex-col gap-10 md:order-1 md:col-span-3">

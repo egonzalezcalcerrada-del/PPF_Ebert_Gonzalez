@@ -1,6 +1,5 @@
 ---
 import { useTranslatedPath, useTranslations } from "../i18n/utils";
-import Placeholder from "./Placeholder.astro";
 
 interface Props {
 	lang: "es" | "en";
@@ -50,9 +49,14 @@ const tail = words.length > 1 ? words[words.length - 1] : "";
 		</div>
 		<figure class="mx-auto mt-12 max-w-5xl sm:mt-14 lg:mt-16">
 			<div class="overflow-hidden rounded-3xl shadow-2xl ring-1 ring-stone-900/10">
-				<Placeholder label={t("placeholder.label")} name={t("placeholder.hero")} ratio="video" />
+				<img
+					src="/images/comedor.webp"
+					alt={t("hero.imageAlt")}
+					loading="eager"
+					fetchpriority="high"
+					class="aspect-video w-full object-cover"
+				/>
 			</div>
-			<figcaption class="sr-only">{t("hero.imageAlt")}</figcaption>
 		</figure>
 	</div>
 </section>
