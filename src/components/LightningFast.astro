@@ -1,0 +1,29 @@
+---
+import { useTranslations } from "../i18n/utils";
+import FeatureSection from "./FeatureSection.astro";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [
+	t("sections.speed.item1"),
+	t("sections.speed.item2"),
+	t("sections.speed.item3"),
+];
+---
+
+<FeatureSection
+	titleId="speed-title"
+	title={t("sections.speed.title")}
+	description={t("sections.speed.description")}
+	features={items}
+	imagePosition="right"
+	tone="white"
+	placeholderLabel={t("placeholder.label")}
+	placeholderName={t("placeholder.speed")}
+	placeholderRatio="video"
+/>

@@ -1,5 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import FlexibleMenu from "../../components/FlexibleMenu.astro";
+import VisualEditing from "../../components/VisualEditing.astro";
+import LightningFast from "../../components/LightningFast.astro";
+import DocsFeatures from "../../components/DocsFeatures.astro";
+import OpenSource from "../../components/OpenSource.astro";
+import TastyDeals from "../../components/TastyDeals.astro";
+import Footer from "../../components/Footer.astro";
 import { useTranslations } from "../../i18n/utils";
 
 const t = useTranslations("en");
@@ -9,5 +17,12 @@ const description = t("meta.home.description");
 ---
 
 <Layout title={title} description={description} lang="en">
-	<h1 class="text-4xl font-bold">{title}</h1>
+	<Hero lang="en" />
+	<FlexibleMenu lang="en" />
+	<VisualEditing lang="en" />
+	<LightningFast lang="en" />
+	<DocsFeatures lang="en" />
+	<OpenSource lang="en" />
+	<TastyDeals lang="en" />
+	<Footer lang="en" />
 </Layout>

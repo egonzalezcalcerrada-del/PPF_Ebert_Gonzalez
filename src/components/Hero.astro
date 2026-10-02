@@ -1,0 +1,58 @@
+---
+import { useTranslatedPath, useTranslations } from "../i18n/utils";
+import Placeholder from "./Placeholder.astro";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const title = t("hero.title");
+const words = title.split(" ").filter(Boolean);
+const head = words.length > 1 ? words.slice(0, -1).join(" ") : title;
+const tail = words.length > 1 ? words[words.length - 1] : "";
+---
+
+<section aria-labelledby="hero-title" class="bg-cream text-stone-900">
+	<div class="shell pt-16 pb-14 sm:pt-24 sm:pb-20 lg:pt-32 lg:pb-24">
+		<div class="mx-auto max-w-3xl text-center">
+			<p class="eyebrow">
+				<span aria-hidden="true" class="eyebrow-dot"></span>
+				{t("hero.eyebrow")}
+			</p>
+			<h1
+				id="hero-title"
+				class="mt-6 text-4xl leading-[1.05] font-black tracking-tight text-balance sm:text-6xl lg:text-7xl"
+			>
+				{head}{" "}
+				{
+					tail && (
+						<span class="text-teal-900 underline decoration-lime-300 decoration-[0.12em] underline-offset-[0.14em]">
+							{tail}
+						</span>
+					)
+				}
+			</h1>
+			<p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-stone-600 text-balance sm:text-lg lg:text-xl">
+				{t("hero.subtitle")}
+			</p>
+			<div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+				<a href={`${tp("/")}#nosotros`} class="btn btn-primary sm:w-auto">
+					{t("nav.about")}
+				</a>
+				<a href={`${tp("/")}#carta`} class="btn btn-secondary sm:w-auto">
+					{t("nav.menu")}
+				</a>
+			</div>
+		</div>
+		<figure class="mx-auto mt-12 max-w-5xl sm:mt-14 lg:mt-16">
+			<div class="overflow-hidden rounded-3xl shadow-2xl ring-1 ring-stone-900/10">
+				<Placeholder label={t("placeholder.label")} name={t("placeholder.hero")} ratio="video" />
+			</div>
+			<figcaption class="sr-only">{t("hero.imageAlt")}</figcaption>
+		</figure>
+	</div>
+</section>

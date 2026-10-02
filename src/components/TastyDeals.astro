@@ -1,0 +1,63 @@
+---
+import { useTranslations } from "../i18n/utils";
+import Placeholder from "./Placeholder.astro";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const deals = [
+	{
+		name: t("deals.deal1.name"),
+		description: t("deals.deal1.description"),
+		price: t("deals.deal1.price"),
+		image: t("placeholder.deal1"),
+	},
+	{
+		name: t("deals.deal2.name"),
+		description: t("deals.deal2.description"),
+		price: t("deals.deal2.price"),
+		image: t("placeholder.deal2"),
+	},
+	{
+		name: t("deals.deal3.name"),
+		description: t("deals.deal3.description"),
+		price: t("deals.deal3.price"),
+		image: t("placeholder.deal3"),
+	},
+];
+---
+
+<section
+	id="promociones"
+	aria-labelledby="deals-title"
+	class="border-y border-stone-900/10 bg-white text-stone-900"
+>
+	<div class="shell section-pad">
+		<h2 id="deals-title" class="h-section mx-auto max-w-2xl text-center">
+			{t("sections.deals.title")}
+		</h2>
+		<p class="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-stone-600 sm:text-lg">
+			{t("sections.deals.description")}
+		</p>
+		<div class="mt-10 grid gap-5 sm:grid-cols-3 lg:gap-6">
+			{deals.map((deal) => (
+				<article class="card flex flex-col overflow-hidden">
+					<div class="overflow-hidden">
+						<Placeholder label={t("placeholder.label")} name={deal.image} ratio="portrait" />
+					</div>
+					<div class="flex flex-1 flex-col p-6 sm:p-5 lg:p-6">
+						<h3 class="text-lg font-bold tracking-tight text-stone-900">{deal.name}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-stone-600">{deal.description}</p>
+						<p class="mt-4 inline-flex items-center rounded-full bg-teal-900 px-4 py-1.5 text-lg font-black tracking-tight text-amber-50">
+							{deal.price}
+						</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

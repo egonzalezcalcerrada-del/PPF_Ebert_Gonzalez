@@ -1,0 +1,33 @@
+---
+import { useTranslatedPath, useTranslations } from "../i18n/utils";
+import FeatureSection from "./FeatureSection.astro";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const items = [
+	t("sections.flexible.item1"),
+	t("sections.flexible.item2"),
+	t("sections.flexible.item3"),
+];
+---
+
+<FeatureSection
+	id="carta"
+	titleId="flexible-menu-title"
+	title={t("sections.flexible.title")}
+	description={t("sections.flexible.description")}
+	features={items}
+	buttonText={t("buttons.viewMenu")}
+	href={tp("/")}
+	imagePosition="right"
+	tone="white"
+	placeholderLabel={t("placeholder.label")}
+	placeholderName={t("placeholder.menu")}
+	placeholderRatio="portrait"
+/>

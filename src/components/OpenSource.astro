@@ -1,0 +1,70 @@
+---
+import { useTranslations } from "../i18n/utils";
+import Placeholder from "./Placeholder.astro";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [
+	t("sections.opensource.item1"),
+	t("sections.opensource.item2"),
+	t("sections.opensource.item3"),
+];
+---
+
+<section aria-labelledby="opensource-title" class="bg-cream text-stone-900">
+	<div class="shell section-pad">
+		<div class="overflow-hidden rounded-[2rem] bg-teal-950 px-6 py-10 text-amber-50 shadow-2xl ring-1 ring-teal-950 sm:rounded-[2.5rem] sm:p-10 lg:p-14">
+			<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+				<div>
+					<h2
+						id="opensource-title"
+						class="text-3xl font-black tracking-tight text-balance sm:text-4xl lg:text-5xl"
+					>
+						{t("sections.opensource.title")}
+					</h2>
+					<p class="mt-4 max-w-xl text-base leading-relaxed text-teal-50/80 sm:text-lg">
+						{t("sections.opensource.description")}
+					</p>
+					<ul class="mt-6 flex flex-col gap-3">
+						{items.map((item) => (
+							<li class="flex items-start gap-3 text-sm font-medium text-amber-50/90 sm:text-base">
+								<span
+									aria-hidden="true"
+									class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-lime-300 text-teal-950"
+								>
+									<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+										<path
+											d="M2.5 6.2 4.8 8.5 9.5 3.5"
+											stroke="currentColor"
+											stroke-width="1.8"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</span>
+								{item}
+							</li>
+						))}
+					</ul>
+					<a href="#" class="btn btn-accent mt-8">
+						{t("sections.opensource.cta")}
+					</a>
+				</div>
+				<div>
+					<div class="overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/20">
+						<Placeholder
+							label={t("placeholder.label")}
+							name={t("placeholder.opensource")}
+							ratio="video"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,23 @@
+---
+interface Props {
+	label: string;
+	name: string;
+	ratio?: "video" | "portrait";
+}
+
+const { label, name, ratio = "video" } = Astro.props;
+---
+
+	<div
+		role="img"
+		aria-label={name}
+		class:list={[
+			"flex items-center justify-center rounded-lg bg-neutral-200 px-4 py-8 text-center",
+		ratio === "video" ? "aspect-video" : "aspect-[4/5]",
+	]}
+>
+	<p class="text-sm font-medium tracking-wide text-neutral-600 uppercase">
+		{label}
+		<span class="mt-1 block text-base font-semibold normal-case">{name}</span>
+	</p>
+</div>

@@ -1,1 +1,64 @@
 @import "tailwindcss";
+
+/*
+ * Lenguaje visual propio inspirado en la referencia:
+ * superficies claras cálidas que alternan con blanco, banda oscura
+ * verde pino para los momentos destacados y lima como acento.
+ * Implementación 100 % nuestra con Tailwind CSS 4, sin copiar código.
+ */
+@theme {
+	--color-cream: #faf6ec;
+}
+
+@layer base {
+	body {
+		@apply overflow-x-clip bg-cream text-stone-900;
+	}
+}
+
+@layer components {
+	/* Contenedor y ritmo vertical compartidos */
+	.shell {
+		@apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+	}
+	.section-pad {
+		@apply py-14 sm:py-20 lg:py-24;
+	}
+
+	/* Etiqueta superior (eyebrow): admite 2 líneas centradas en pantallas estrechas */
+	.eyebrow {
+		@apply inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-stone-900/15 bg-white/70 px-4 py-1.5 text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-900;
+	}
+	.eyebrow-dot {
+		@apply size-1.5 rounded-full bg-teal-700;
+	}
+
+	/* Título de sección claro */
+	.h-section {
+		@apply text-3xl font-black tracking-tight text-balance text-stone-900 sm:text-4xl lg:text-5xl;
+	}
+
+	/* Botones píldora */
+	.btn {
+		@apply inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2;
+	}
+	.btn-primary {
+		@apply bg-stone-900 text-amber-50 hover:bg-teal-900 focus-visible:outline-teal-900;
+	}
+	.btn-secondary {
+		@apply border border-stone-900/20 bg-white/70 text-stone-900 hover:border-stone-900 hover:bg-white focus-visible:outline-teal-900;
+	}
+	.btn-accent {
+		@apply bg-lime-300 text-teal-950 hover:bg-amber-50 focus-visible:outline-lime-300;
+	}
+
+	/* Tarjeta clara con hover discreto */
+	.card {
+		@apply rounded-3xl border border-stone-900/10 bg-white/70 transition-all duration-300 hover:-translate-y-1 hover:border-stone-900/20 hover:shadow-lg;
+	}
+
+	/* Marco para zonas visuales */
+	.frame {
+		@apply overflow-hidden rounded-3xl shadow-xl ring-1 ring-stone-900/10;
+	}
+}

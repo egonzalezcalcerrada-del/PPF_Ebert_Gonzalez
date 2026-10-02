@@ -1,0 +1,76 @@
+---
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const articles = [
+	{
+		title: t("sections.docs.article1.title"),
+		description: t("sections.docs.article1.description"),
+		shape: "size-5 rounded-full bg-teal-800",
+	},
+	{
+		title: t("sections.docs.article2.title"),
+		description: t("sections.docs.article2.description"),
+		shape: "size-5 rounded-full border-[3px] border-teal-800",
+	},
+	{
+		title: t("sections.docs.article3.title"),
+		description: t("sections.docs.article3.description"),
+		shape: "size-5 bg-amber-500 [clip-path:polygon(50%_0%,100%_100%,0%_100%)]",
+	},
+];
+---
+
+<section aria-labelledby="docs-title" class="bg-cream text-stone-900">
+	<div class="shell section-pad">
+		<h2 id="docs-title" class="h-section mx-auto max-w-2xl text-center">
+			{t("sections.docs.title")}
+		</h2>
+		<div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+			{articles.map((article) => (
+				<article class="card group flex flex-col p-6 sm:p-7">
+					<span
+						aria-hidden="true"
+						class="grid size-12 place-items-center rounded-2xl bg-teal-900/10"
+					>
+						<span aria-hidden="true" class:list={[article.shape]} />
+					</span>
+					<h3 class="mt-5 text-lg font-bold tracking-tight text-stone-900 sm:text-xl">
+						{article.title}
+					</h3>
+					<p class="mt-2 text-sm leading-relaxed text-stone-600 sm:text-base">
+						{article.description}
+					</p>
+					<a
+						href="#"
+						class="-m-1 mt-4 inline-flex items-center gap-1.5 p-1 text-sm font-semibold text-teal-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-900"
+					>
+						{t("sections.editing.cta")}
+						<svg
+							width="14"
+							height="14"
+							viewBox="0 0 16 16"
+							fill="none"
+							aria-hidden="true"
+							class="transition-transform duration-300 group-hover:translate-x-0.5"
+						>
+							<path
+								d="M2.5 8h11M10 4.5 13.5 8 10 11.5"
+								stroke="currentColor"
+								stroke-width="1.6"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+					</a>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

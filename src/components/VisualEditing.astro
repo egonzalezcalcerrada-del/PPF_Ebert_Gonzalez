@@ -1,0 +1,23 @@
+---
+import { useTranslations } from "../i18n/utils";
+import FeatureSection from "./FeatureSection.astro";
+
+interface Props {
+	lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<FeatureSection
+	titleId="visual-editing-title"
+	title={t("sections.editing.title")}
+	description={t("sections.editing.description")}
+	buttonText={t("sections.editing.cta")}
+	href="#"
+	imagePosition="left"
+	placeholderLabel={t("placeholder.label")}
+	placeholderName={t("placeholder.editing")}
+	placeholderRatio="video"
+/>
