@@ -17,8 +17,10 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
-  },
+  }, 
   devToolbar: {
     enabled: false,
   },
+  site: 'https://egonzalezcalcerrada-del.github.io',
+  base: '/PPF_Ebert_gonzalez',
 });
