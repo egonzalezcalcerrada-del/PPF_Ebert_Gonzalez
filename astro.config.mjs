@@ -22,5 +22,5 @@ export default defineConfig({
     enabled: false,
   },
   site: 'https://egonzalezcalcerrada-del.github.io',
-  base: '/PPF_Ebert_gonzalez',
+  base: '/PPF_Ebert_Gonzalez',
 });
